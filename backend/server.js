@@ -1,5 +1,5 @@
 // import from app.js file
-const app = require("./squadBoss/app.js");
+const app = require("./app.js");
 
 
 app.listen(3001, ()=>{
