@@ -1,8 +1,9 @@
 // import mongoose module
 const mongoose = require("mongoose");
+const objectId = mongoose.objectId;
 // create user schema (attributes)
-const playerSchema = mongoose.Schema({
-_id:String,
+const playerSchema = new mongoose.Schema({
+
 FullName:String,
 Overall:Number,
 Potential:Number,

@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 const player = require("./models/player");
 const coach = require("./models/coach");
-
+const playerRouter = require("./routes/playerRouter");
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -24,43 +24,9 @@ mongoose.connect(MONGO_URI).then(() => {
     console.log(err)
 });
 
+//activate json exchange
+app.use(require("express").json());
 
 
-
-app.post("/player/signup", (req, res) => {
-            let player = req.body;
-            let playerObj = new player({
-                FullName:player.FullName,
-                DateOfBirth:player.DateOfBirth,
-                mail:player.mail,
-                team:player.team,
-                Nationality: player.Nationality,
-                pwd:player.pwd    
-            })
-            playerObj.save();
-        })
-app.post("/player/login",
-    (req, res) => {
-        
-                player.findOne({ email: req.body.email }).then(
-                    (player) => {
-                        let playerToSend = {
-                            FullName:player.FullName,
-                            DateOfBirth:player.DateOfBirth,
-                            mail:player.mail,
-                            team:player.team,
-                            Nationality: player.Nationality,
-                            pwd:player.pwd
-                        }
-                        res.json({ user: playerToSend })
-                    }
-                )
-    })
-app.get("/player", (req, res) => {
-        player.find().then(
-            (docs) => {
-                res.json({ playersTable: docs })
-            }
-        )
-    }
-    )    
+// Routes
+app.use(playerRouter);
