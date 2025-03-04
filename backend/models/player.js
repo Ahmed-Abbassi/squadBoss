@@ -9,7 +9,6 @@ Potential:Number,
 PositionsPlayed:String,
 BestPosition:String,
 Nationality:String,
-DateOfBirth:Date,
 Age:Number,
 Height:Number,
 ClubPosition:String,
@@ -23,8 +22,10 @@ ShootingTotal:String,
 PassingTotal:String,
 DribblingTotal:String,
 DefendingTotal:String,
+DateOfBirth:Date,
 mail:String,
 team:String,
+pwd:String,
 price:Number
 })
 // create model(PascalCase)
