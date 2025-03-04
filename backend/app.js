@@ -1,15 +1,31 @@
-const express = require("express");
+const app = require("express")();
 const mongoose = require("mongoose");
-mongoose.set('strictQuery', true);
+
+const player = require("./models/player");
+const coach = require("./models/coach");
+
+const dotenv = require('dotenv');
+dotenv.config();
+
+
+
+const MONGO_URI= process.env.MONGO_URI;
+const PORT = process.env.PORT || 3000;
+//mongoose.set('strictQuery', true);
 
 
 // Connect App with DataBase
-mongoose.connect('mongodb://localhost:27017/footballCoachingDB');
+mongoose.connect(MONGO_URI).then(() => {
+    console.log("connected to database")
+    app.listen(PORT, () => {
+        console.log('Server is running on port ', PORT);
+    });
+}).catch((err) => {
+    console.log(err)
+});
 
-const app = express();
-module.exports = app;
-const player = require("./models/player");
-const coach = require("./models/coach");
+
+
 
 app.post("/player/signup", (req, res) => {
             let player = req.body;
