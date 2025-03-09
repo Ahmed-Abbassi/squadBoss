@@ -1,3 +1,4 @@
+/*
 const express = require("express");
 const mongoose = require("mongoose");
 mongoose.set('strictQuery', true);
@@ -25,9 +26,10 @@ app.use((req, res, next) => {
     next();
 });
 
-
+*/
 
 /*********** Business Logic : PLAYER ***********/
+/*
 const Player = require("./models/player");
 
     // SIGNUP PLAYER ()
@@ -133,8 +135,9 @@ app.put("/player/:_id", (req, res) => {
         }
     })
 })
-
+*/
 /***********  Business Logic : COACH ***********/
+/*
 const Coach = require("./models/coach");
 
     // SIGNUP COACH ()
@@ -222,13 +225,13 @@ app.post("/addCoach", (req, res) => {
     coachObj.save();
     res.json({ message: "coach added" })
     })
-
+*/
 /***********  Business Logic : TEAM ***********/
 
 
 
 
-const axios = require('axios'); s
+/*const axios = require('axios'); s
 
 async function sendPlayerDataToIA(playerData) {
     try {
@@ -274,3 +277,27 @@ app.get("/player/:_id/predict", async (req, res) => {
     }
 });
 
+*/
+
+const express = require("express");
+const mongoose = require("mongoose");
+mongoose.set('strictQuery', true);
+const app = express();
+const playerRoutes = require("./routes/playerRoutes");
+const coachRoutes = require("./routes/coachRoutes");
+
+mongoose.connect('mongodb://localhost:27017/footballCoachingDB');
+
+// Middleware
+app.use(express.json());
+
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS, PATCH, PUT");
+    next();
+});
+
+app.use("/player", playerRoutes);
+app.use("/coach", coachRoutes);
+module.exports = app;
