@@ -70,66 +70,7 @@ const Signin = () => {
       justifyContent={"space-between"}
     >
       
-      <Box
-        position={"relative"}
-        w={"67%"}
-        h={"100%"}
-        display={"flex"}
-        justifyContent={"center"}
-        alignItems={"center"}
-      >
-        <Image
-          borderTopRightRadius={"10%"}
-          borderBottomRightRadius={"15%"}
-          height={"100%"}
-          src={Foot1}
-          alt="ffedgvdtgft"
-        />
-        <Image
-          src={Squad}
-          alt="squadBoss"
-          position={"absolute"}
-          w={"300px"}
-          top={"0px"}
-        />
-        <Box position={"absolute"} top={"50%"} left={"30%"} width={"400px"}>
-          <Typewriter
-            sentences={[
-              "Unlock your full potential with our cutting-edge platform ....... Join thousands of users enjoying a seamless experience.",
-              "Stay connected, stay ahead – your journey starts here!",
-              "Your security and success are our top priorities..........Innovate, collaborate, and achieve more with ease.",
-              "Fast, reliable, and designed just for you!",
-              "Experience the future of efficiency – start now!",
-            ]}
-            textColor="white"
-          />
-        </Box>
-        <Box
-          w={"100%"}
-          display={"flex"}
-          justifyContent={"space-around"}
-          alignItems={"center"}
-          bottom={"10px"}
-          position={"absolute"}
-        >
-          <Box>
-            <Text fontSize="sm" textAlign="center" color="gray.200">
-              © {new Date().getFullYear()} YourCompany. All rights reserved.
-            </Text>
-          </Box>
-          <Box
-            w={"30%"}
-            display={"flex"}
-            justifyContent={"space-between"}
-            alignItems={"center"}
-          >
-            <FaFacebook cursor={"pointer"} color="white" size={"2em"} />
-            <FaInstagram cursor={"pointer"} color="white" size={"2em"} />
-            <FaTwitter cursor={"pointer"} color="white" size={"2em"} />
-            <FaGithub cursor={"pointer"} color="white" size={"2em"} />
-          </Box>
-        </Box>
-      </Box>
+      
       <Box
         display={"flex"}
         justifyContent={"center"}
@@ -184,6 +125,68 @@ const Signin = () => {
               Signin
             </Button>
           </Fieldset.Root>
+        </Box>
+      </Box>
+      {// image start here
+      }
+      <Box
+        position={"relative"}
+        w={"67%"}
+        h={"100%"}
+        display={"flex"}
+        justifyContent={"center"}
+        alignItems={"center"}
+      >
+        <Image
+          borderTopLeftRadius={"10%"}
+          borderBottomLeftRadius={"15%"}
+          height={"100%"}
+          src={Foot1}
+          alt="ffedgvdtgft"
+        />
+        <Image
+          src={Squad}
+          alt="squadBoss"
+          position={"absolute"}
+          w={"300px"}
+          top={"0px"}
+        />
+        <Box position={"absolute"} top={"50%"} left={"30%"} width={"400px"}>
+          <Typewriter
+            sentences={[
+              "Unlock your full potential with our cutting-edge platform ....... Join thousands of users enjoying a seamless experience.",
+              "Stay connected, stay ahead – your journey starts here!",
+              "Your security and success are our top priorities..........Innovate, collaborate, and achieve more with ease.",
+              "Fast, reliable, and designed just for you!",
+              "Experience the future of efficiency – start now!",
+            ]}
+            textColor="white"
+          />
+        </Box>
+        <Box
+          w={"100%"}
+          display={"flex"}
+          justifyContent={"space-around"}
+          alignItems={"center"}
+          bottom={"10px"}
+          position={"absolute"}
+        >
+          <Box>
+            <Text fontSize="sm" textAlign="center" color="gray.200">
+              © {new Date().getFullYear()} YourCompany. All rights reserved.
+            </Text>
+          </Box>
+          <Box
+            w={"30%"}
+            display={"flex"}
+            justifyContent={"space-between"}
+            alignItems={"center"}
+          >
+            <FaFacebook cursor={"pointer"} color="white" size={"2em"} />
+            <FaInstagram cursor={"pointer"} color="white" size={"2em"} />
+            <FaTwitter cursor={"pointer"} color="white" size={"2em"} />
+            <FaGithub cursor={"pointer"} color="white" size={"2em"} />
+          </Box>
         </Box>
       </Box>
     </Box>
