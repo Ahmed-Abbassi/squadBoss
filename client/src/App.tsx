@@ -1,11 +1,13 @@
 import Login from './pages/login/Login';
-import Signin from './pages/Signin/Signin';
+import Signup from './pages/Signup/Signup.tsx';
 import {Provider} from './components/ui/provider';
 import {Routes, Route } from "react-router";
 import LandingPage from './pages/landingPage/LandingPage';
 import Home from './pages/Home/Home';
 import ContactUs from './pages/contactus/ContactUs';
 import AboutUs from './pages/aboutus/AboutUs';
+import Pricing from './pages/pricing/Pricing';
+import NoMatch from "./pages/page404/NoMatch.tsx";
 function App() {
   return (
     <Provider>
@@ -14,10 +16,12 @@ function App() {
           //public routes
         }
         <Route index path='/' element={<Home />} />
-        <Route index path='/login' element={<Login />} />
-        <Route index path='/signin' element={<Signin />} />
-        <Route index path='/contact' element={<ContactUs />} />
-        <Route index path='/about' element={<AboutUs />} />
+        <Route  path='/login' element={<Login />} />
+        <Route  path='/signup' element={<Signup/>} />
+        <Route  path='/contact' element={<ContactUs />} />
+        <Route  path='/about' element={<AboutUs />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path={"*"} element={<NoMatch/>}/>
 
 
         {

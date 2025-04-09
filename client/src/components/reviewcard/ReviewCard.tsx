@@ -1,5 +1,5 @@
 import React from "react";
-import { ChakraProvider, Box, Text, VStack, Container, SimpleGrid } from "@chakra-ui/react";
+import {  Box, Text, VStack } from "@chakra-ui/react";
 import { Avatar } from "../ui/avatar";
 interface Review {
   name: string;

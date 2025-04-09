@@ -8,13 +8,16 @@ import {
   Image,
   InputProps,
 } from "@chakra-ui/react";
+import axios from "axios";
 import { Field } from "../../components/ui/field";
 import Foot1 from "../../../public/footlogin.jpg";
 import Squad from "../../../public/squadBoss.png";
 import { FaFacebook, FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
 import { motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import Header from "../../components/header/Header.tsx";
+
+
 const inputStyles: InputProps = {
   width: "100%",
   borderColor: "gray.300",
@@ -23,10 +26,18 @@ interface propsToType {
   sentences: string[];
   textColor: string;
 }
+//type of data in the form
+type formDataType ={
+  FullName :string,
+  email: string,
+  PositionsPlayed: string,
+  team:string
+}
 const Typewriter: React.FC<propsToType> = ({ sentences, textColor }) => {
   const [text, setText] = useState("");
   const [index, setIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
+
 
   useEffect(() => {
     if (charIndex < sentences[index].length) {
@@ -61,21 +72,43 @@ const Typewriter: React.FC<propsToType> = ({ sentences, textColor }) => {
   );
 };
 
-const Login = () => {
+
+
+const Signup = () => {
+
+  const [formData, setFormData] = useState<formDataType>({FullName: "", email :"", PositionsPlayed: "", team: ""})
+
+  const onFormInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setFormData({...formData, [event.target.name]: event.target.value});
+  }
+
+  //handdle submit:
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post("http://127.0.0.1:3001/player/signup", formData);
+      console.log("Response:", response.data);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
+
+
   return (
     <Box>
       <Header/>
       <Box
+          overflow={"hidden"}
           backgroundColor={"green.50"}
           h={"100vh"}
           display={"flex"}
           justifyContent={"space-between"}
-          overflow={"hidden"}
       >
+
+
         <Box
             display={"flex"}
             justifyContent={"center"}
-            mt={"15%"}
+            mt={"7%"}
             height={"100vh"}
             w={"33%"}
         >
@@ -91,35 +124,50 @@ const Login = () => {
             >
               <Stack>
                 <Fieldset.Legend fontSize={"3xl"}>
-                  Contact details
+                  Create an account
                 </Fieldset.Legend>
                 <Fieldset.HelperText>
-                  Please provide your contact details below.
+                  Please provide your informations below.
                 </Fieldset.HelperText>
               </Stack>
 
               <Fieldset.Content>
-                <Field label="Email">
-                  <Input {...inputStyles} type="email" name="email" />
+                <Field label="FullName">
+                  <Input {...inputStyles} type="text" name="FullName" placeholder="please enter FullName" onChange={onFormInputChange} />
                 </Field>
 
-                <Field label="Password">
-                  <Input {...inputStyles} name="password" type="password" />
+                <Field label="email">
+                  <Input {...inputStyles} type="email" name="email" placeholder="please enter your email" onChange={onFormInputChange} />
                 </Field>
+                <Field label="PositionsPlayed">
+                  <Input {...inputStyles} name="PositionsPlayed" type="text" placeholder="please enter your PositionsPlayed" onChange={onFormInputChange} />
+                </Field>
+
+                <Field label="team">
+                  <Input {...inputStyles} name="team" type="text" placeholder="please enter your team" onChange={onFormInputChange}/>
+                </Field>
+
+                <Field label="pwd">
+                  <Input {...inputStyles} name="pwd" type="password" placeholder="please choose pwd" onChange={onFormInputChange}/>
+                </Field>
+
               </Fieldset.Content>
 
               <Button
-                  backgroundColor={"green.600"}
+                  backgroundColor={"green.500"}
                   color={"white"}
                   w={"100%"}
                   type="submit"
                   alignSelf="flex-start"
+                  onClick={handleSubmit}
               >
-                Login
+                Signin
               </Button>
             </Fieldset.Root>
           </Box>
         </Box>
+        {// image start here
+        }
         <Box
             position={"relative"}
             w={"67%"}
@@ -151,7 +199,7 @@ const Login = () => {
                   "Fast, reliable, and designed just for you!",
                   "Experience the future of efficiency – start now!",
                 ]}
-                textColor="green.500"
+                textColor="green.600"
             />
           </Box>
           <Box
@@ -185,4 +233,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
