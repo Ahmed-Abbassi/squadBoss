@@ -3,11 +3,11 @@ import Header from "../../components/header/Header";
 import Soccerfriends from "../../../public/foot1.avif";
 import { FaBook, FaQuestion, FaInstagram, FaPhone } from "react-icons/fa";
 import Footer from "../../components/footer/Footer";
-import {  } from "react-icons";
+import { IconType } from "react-icons";
 
 
 
-const aboutCardsContent: { icon: any; cardTitle: string; cardContent: string; cardPath: string }[] = [
+const aboutCardsContent: { icon: IconType; cardTitle: string; cardContent: string; cardPath: string }[] = [
     {
       icon: FaInstagram,
       cardTitle: "Join Our Community",
@@ -16,14 +16,14 @@ const aboutCardsContent: { icon: any; cardTitle: string; cardContent: string; ca
     },
     {
       icon: FaBook,
-      cardTitle: "Learning Resources",
+        cardTitle: "Add your team",
       cardContent: "Explore our extensive library of guides and tutorials to improve your game.",
       cardPath: "/resources",
     },
     {
       icon: FaPhone,
       cardTitle: "Contact Support",
-      cardContent: "Need help? Reach out to our support team for assistance with any issues.",
+      cardContent: "Need  huppelp? Reach out to our support team for assistance with any issues.",
       cardPath: "/contact",
     },
     {

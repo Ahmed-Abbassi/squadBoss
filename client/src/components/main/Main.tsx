@@ -3,7 +3,7 @@ import dashboard from "../../../public/dashboard.png";
 import dashboard1 from "../../../public/dash.png";
 import { Image, Box, Text, Input, Button, Heading } from "@chakra-ui/react";
 import Figure from "../figure/Figure";
-import ContactUs from "../../pages/contactus/ContactUs";
+
 import ReviewCard from "../reviewcard/ReviewCard";
 import Footer from "../footer/Footer";
 
@@ -51,7 +51,7 @@ function Main() {
             bgColor={"white"}
             color={"black"}
           />
-          <Button bgColor={"green.400"} w={"30%"}>
+          <Button bgColor={"green.600"} w={"30%"}>
             Register my team
           </Button>
         </Box>
@@ -117,7 +117,7 @@ function Main() {
                 <Button px={"30px"} bgColor={"#63C37B"}>
                     Register my team
                 </Button>
-                <Button px={"30px"} color={"green.400"} bgColor={"white"} border={"1px solid green.400"} >
+                <Button px={"30px"} color={"green.600"} bgColor={"white"} border={"1px solid green.600"} >
                     Register my club
                 </Button>
             </Box>
