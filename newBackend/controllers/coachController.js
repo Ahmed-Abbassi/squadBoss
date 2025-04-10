@@ -43,7 +43,7 @@ exports.deleteCoach = (req, res) => {
 exports.getCoachById = (req, res) => {
     Coach.findById(req.params._id)
         .then(coach => coach ? res.json({ coach }) : res.status(404).json({ message: "Coach not found" }))
-        .catch(err => res.status(500).json({ error: "Internal server error", details: err }));
+        .catch(err => res.status(500).json({ error: "Internal server error", details: err.message }));
 };
 
 // Add a Coach

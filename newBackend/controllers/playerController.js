@@ -1,6 +1,6 @@
 const Player = require("../models/player");
 const bcrypt = require("bcrypt");
-const { sendPlayerDataToIA, transformPlayerData } = require("../utils/aiService");
+const { sendPlayerDataToIA, transformPlayerData } = require("../utils/iaServices");
 
 // Sign Up Player
 exports.signupPlayer = (req, res) => {
