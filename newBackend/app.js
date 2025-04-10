@@ -283,12 +283,15 @@ const express = require("express");
 const mongoose = require("mongoose");
 mongoose.set('strictQuery', true);
 const app = express();
-const playerRoutes = require("./routes/playerRoutes");
-const coachRoutes = require("./routes/coachRoutes");
+const playerRoutes = require("./routes/playerRoute");
+const coachRoutes = require("./routes/coachRoute");
 
-mongoose.connect('mongodb://localhost:27017/footballCoachingDB');
+const uri='mongodb://squadbosscluster.fy8rwpc.mongodb.net';
+mongoose.connect(uri, {
+  })
+  .then(() => console.log('Connexion à MongoDB Atlas réussie'))
+  .catch((err) => console.error('Erreur de connexion à MongoDB Atlas :', err));
 
-// Middleware
 app.use(express.json());
 
 app.use((req, res, next) => {
