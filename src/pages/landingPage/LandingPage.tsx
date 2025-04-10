@@ -313,6 +313,70 @@ import {
   
   export default LandingPage;```javascript
 // Substitutes data
+const substitutes = [
+  { name: "Raya", position: "Goalkeeper", shirtNumber: 1, x: "41%", y: "80%", imageUrl: basePath + "raya.jpeg" },
+  { name: "Cucurella", position: "Left Back", shirtNumber: 3, x: "2%", y: "35%", imageUrl: basePath + "cucurella.png" },
+  { name: "Aina", position: "Center Back", shirtNumber: 4, x: "28%", y: "60%", imageUrl: basePath + "aina.jpeg" },
+  { name: "Gvardiol", position: "Center Back", shirtNumber: 5, x: "54%", y: "60%", imageUrl: basePath + "gvardiol.jpeg" },
+  { name: "Walker", position: "Right Back", shirtNumber: 2, x: "73%", y: "55%", imageUrl: basePath + "walker.png" },
+  { name: "Sarr", position: "Left Midfield", shirtNumber: 6, x: "12%", y: "35%", imageUrl: basePath + "sarr.jpeg" },
+  { name: "Bowen", position: "Central Midfield", shirtNumber: 8, x: "41%", y: "42%", imageUrl: basePath + "bowen.jpeg" },
+  { name: "Palmer", position: "Right Midfield", shirtNumber: 7, x: "70%", y: "35%", imageUrl: basePath + "palmer.jpeg" },
+  { name: "Marmoush", position: "Left Wing", shirtNumber: 10, x: "17%", y: "17%", imageUrl: basePath + "marmoush.jpeg" },
+  { name: "Watkins", position: "Striker", shirtNumber: 9, x: "41%", y: "10%", imageUrl: basePath + "watkins.jpeg" },
+  { name: "Kai Havertz", position: "Right Wing", shirtNumber: 29, x: "65%", y: "17%", imageUrl: basePath + "Havertz.png" },
+];
+
+// Substitutes Section
+<Box
+  bg="white"
+  borderRadius="xl"
+  overflow="hidden"
+  boxShadow="lg"
+  p={{ base: 4, md: 6 }}
+  mb={8}
+>
+  <Heading size="md" mb={4} color="gray.800">
+    Remplaçants
+  </Heading>
+  <Flex gap={4} wrap="wrap">
+    {substitutes.map((sub, index) => (
+      <Box
+        key={index}
+        p={4}
+        bg="gray.50"
+        borderRadius="md"
+        boxShadow="md"
+        minW="200px"
+        textAlign="center"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+      >
+        {/* Player Photo */}
+        <Image
+          src={sub.imageUrl}
+          alt={sub.name}
+          boxSize="80px"
+          objectFit="cover"
+          borderRadius="md"
+          mb={2}
+        />
+        <Text fontWeight="bold" color="gray.800">
+          {sub.name}
+        </Text>
+        <Text fontSize="sm" color="gray.500">
+          {sub.position}
+        </Text>
+        <Text fontWeight="bold" color="green.600">
+          #{sub.shirtNumber}
+        </Text>
+      </Box>
+    ))}
+  </Flex>
+</Box>
+``````javascript
+// Substitutes data
 const substitutes = useMemo(() => [
   { name: "Raya", position: "Goalkeeper", shirtNumber: 1, x: "41%", y: "80%", imageUrl: basePath + "raya.jpeg" },
   { name: "Cucurella", position: "Left Back", shirtNumber: 3, x: "2%", y: "35%", imageUrl: basePath + "cucurella.png" },
