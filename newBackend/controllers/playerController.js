@@ -26,12 +26,21 @@ exports.loginPlayer = (req, res) => {
         .catch(err => res.status(500).json({ error: "Internal server error", details: err }));
 };
 
+
 // Get all Players
-exports.getAllPlayers = (req, res) => {
-    Player.find()
-        .then(players => res.json({ playersTable: players }))
-        .catch(err => res.status(500).json({ error: "Internal server error", details: err }));
-};
+exports.getAllPlayers =  async(req, res) => {
+
+    try {
+        const players = await Player.find();
+        
+        
+        res.status(200).json({"players are : ": players});
+      } catch (err) {
+        console.error('Error fetching players:', err);
+        res.status(500).json({ message: 'Server error' });
+      }
+
+}
 
 // Delete Player by ID
 exports.deletePlayer = (req, res) => {

@@ -1,32 +1,34 @@
-// import mongoose module
+// Import mongoose module
 const mongoose = require("mongoose");
-// create user schema (attributes)
-const playerSchema = mongoose.Schema({
-FullName:String,
-Overall:Number,
-Potential:Number,
-PositionsPlayed:String,
-BestPosition:String,
-Nationality:String,
-Age:Number,
-Height:Number,
-ClubPosition:String,
-ContractUntil:String,
-JoinedOn:String,
-PreferredFoot:String,
-NationalTeamJersey: Number,
-AttackingWorkRate:String,
-DefensiveWorkRate:String,
-ShootingTotal:String,
-PassingTotal:String,
-DribblingTotal:String,
-DefendingTotal:String,
-DateOfBirth:String,
-email:String,
-team:String,
-pwd:String,
-price:Number
-})
-// create model(PascalCase)
-const player=mongoose.model("Player",playerSchema);
-module.exports = player;
+
+// Create player schema with camelCase field names
+const playerSchema = new mongoose.Schema({
+  fullName: String,
+  overall: Number,
+  potential: Number,
+  positionsPlayed: String,
+  bestPosition: String,
+  nationality: String,
+  age: Number,
+  height: Number,
+  clubPosition: String,
+  contractUntil: String,
+  joinedOn: String,
+  preferredFoot: String,
+  nationalTeamJersey: Number,
+  attackingWorkRate: String,
+  defensiveWorkRate: String,
+  shootingTotal: String,
+  passingTotal: String,
+  dribblingTotal: String,
+  defendingTotal: String,
+  dateOfBirth: String,
+  email: String,
+  team: String,
+  pwd: String,
+  price: Number
+}, { collection: 'players' }); // Optional: Specify collection name if different
+
+// Create and export the Player model
+const Player = mongoose.model("Player", playerSchema);
+module.exports = Player;
