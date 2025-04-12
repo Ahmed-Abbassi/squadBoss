@@ -1,29 +1,56 @@
-import { Box, Image, Text, VStack } from "@chakra-ui/react";
+import { Box, Image, Text, VStack, Button } from "@chakra-ui/react";
 import FootOitch from "../../../public/footPitch.avif";
+import { useState } from "react";
 
 const basePath = "../../../public/";
 
 const FootballPitch = () => {
+  const [formation, setFormation] = useState("4-3-3"); // Default formation
+
+  // Define player positions for both formations
   const footballTeam = {
     teamName: "FC Code United",
-    formation: "4-3-3",
-    players: [
-      { name: "Raya", position: "Goalkeeper", shirtNumber: 1, x: "50%", y: "80%", imageUrl: basePath + "raya.jpeg" },
-      { name: "Cucurella", position: "Left Back", shirtNumber: 3, x: "12%", y: "55%", imageUrl: basePath + "cucurella.png" },
-      { name: "Aina", position: "Center Back", shirtNumber: 4, x: "28%", y: "60%", imageUrl: basePath + "aina.jpeg" },
-      { name: "Gvardiol", position: "Center Back", shirtNumber: 5, x: "70%", y: "60%", imageUrl: basePath + "gvardiol.jpeg" },
-      { name: "Walker", position: "Right Back", shirtNumber: 2, x: "90%", y: "55%", imageUrl: basePath + "walker.png" },
-      { name: "Sarr", position: "Left Midfield", shirtNumber: 6, x: "12%", y: "35%", imageUrl: basePath + "sarr.jpeg" },
-      { name: "Bowen", position: "Central Midfield", shirtNumber: 8, x: "50%", y: "42%", imageUrl: basePath + "bowen.jpeg" },
-      { name: "Palmer", position: "Right Midfield", shirtNumber: 7, x: "90%", y: "35%", imageUrl: basePath + "palmer.jpeg" },
-      { name: "Marmoush", position: "Left Wing", shirtNumber: 10, x: "27%", y: "17%", imageUrl: basePath + "marmoush.jpeg" },
-      { name: "Watkins", position: "Striker", shirtNumber: 9, x: "50%", y: "10%", imageUrl: basePath + "watkins.jpeg" },
-      { name: "Kai Havertz", position: "Right Wing", shirtNumber: 29, x: "70%", y: "17%", imageUrl: basePath + "Havertz.png" },
-    ],
+    formations: {
+      "4-3-3": [
+        { name: "Raya", position: "Goalkeeper", shirtNumber: 1, x: "50%", y: "80%", imageUrl: basePath + "raya.jpeg" },
+        { name: "Cucurella", position: "Left Back", shirtNumber: 3, x: "12%", y: "55%", imageUrl: basePath + "cucurella.png" },
+        { name: "Aina", position: "Center Back", shirtNumber: 4, x: "28%", y: "60%", imageUrl: basePath + "aina.jpeg" },
+        { name: "Gvardiol", position: "Center Back", shirtNumber: 5, x: "70%", y: "60%", imageUrl: basePath + "gvardiol.jpeg" },
+        { name: "Walker", position: "Right Back", shirtNumber: 2, x: "90%", y: "55%", imageUrl: basePath + "walker.png" },
+        { name: "Sarr", position: "Left Midfield", shirtNumber: 6, x: "12%", y: "35%", imageUrl: basePath + "sarr.jpeg" },
+        { name: "Bowen", position: "Central Midfield", shirtNumber: 8, x: "50%", y: "42%", imageUrl: basePath + "bowen.jpeg" },
+        { name: "Palmer", position: "Right Midfield", shirtNumber: 7, x: "90%", y: "35%", imageUrl: basePath + "palmer.jpeg" },
+        { name: "Marmoush", position: "Left Wing", shirtNumber: 10, x: "27%", y: "17%", imageUrl: basePath + "marmoush.jpeg" },
+        { name: "Watkins", position: "Striker", shirtNumber: 9, x: "50%", y: "10%", imageUrl: basePath + "watkins.jpeg" },
+        { name: "Kai Havertz", position: "Right Wing", shirtNumber: 29, x: "70%", y: "17%", imageUrl: basePath + "Havertz.png" },
+      ],
+      "4-2-2": [
+        { name: "Raya", position: "Goalkeeper", shirtNumber: 1, x: "50%", y: "80%", imageUrl: basePath + "raya.jpeg" },
+        { name: "Cucurella", position: "Left Back", shirtNumber: 3, x: "10%", y: "55%", imageUrl: basePath + "cucurella.png" },
+        { name: "Aina", position: "Center Back", shirtNumber: 4, x: "30%", y: "60%", imageUrl: basePath + "aina.jpeg" },
+        { name: "Gvardiol", position: "Center Back", shirtNumber: 5, x: "70%", y: "60%", imageUrl: basePath + "gvardiol.jpeg" },
+        { name: "Walker", position: "Right Back", shirtNumber: 2, x: "90%", y: "55%", imageUrl: basePath + "walker.png" },
+        { name: "Sarr", position: "Defensive Midfield", shirtNumber: 6, x: "20%", y: "40%", imageUrl: basePath + "sarr.jpeg" },
+        { name: "Bowen", position: "Defensive Midfield", shirtNumber: 8, x: "80%", y: "40%", imageUrl: basePath + "bowen.jpeg" },
+        { name: "Palmer", position: "Right Midfield", shirtNumber: 7, x: "50%", y: "42%", imageUrl: basePath + "palmer.jpeg" },
+        { name: "Marmoush", position: "Attacking Midfield", shirtNumber: 10, x: "70%", y: "10%", imageUrl: basePath + "marmoush.jpeg" },
+        { name: "Watkins", position: "Striker", shirtNumber: 9, x: "30%", y: "10%", imageUrl: basePath + "watkins.jpeg" },
+        { name: "Kai Havertz", position: "Attacking Midfield", shirtNumber: 29, x: "50%", y: "20%", imageUrl: basePath + "Havertz.png" },
+      ],
+    },
+  };
+
+  // Toggle formation between 4-3-3 and 4-2-2
+  const toggleFormation = () => {
+    setFormation(formation === "4-3-3" ? "4-2-2" : "4-3-3");
   };
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center" mt={6}>
+      <Button colorScheme="green" onClick={toggleFormation} mb={4}>
+        Changer la formation ({formation})
+      </Button>
+
       <Box
         width={{ base: "100%", md: "1000px", lg: "1200px" }}
         height={{ base: "500px", md: "650px", lg: "750px" }}
@@ -39,12 +66,12 @@ const FootballPitch = () => {
           src={FootOitch}
           alt="Football Pitch"
           width="100%"
-            height="100%"
+          height="100%"
           objectFit="cover"
           borderRadius="5px"
         />
 
-        {footballTeam.players.map((player, index) => (
+        {footballTeam.formations[formation].map((player, index) => (
           <Box
             key={index}
             position="absolute"
@@ -100,7 +127,7 @@ const FootballPitch = () => {
         mt={4}
         color="gray.700"
       >
-        Formation: {footballTeam.formation}
+        Formation: {formation}
       </Text>
     </Box>
   );
