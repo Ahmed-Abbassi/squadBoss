@@ -4,11 +4,10 @@ import {Box, Text, Flex, IconButton, Link, Stack, useBreakpointValue} from "@cha
 import Header from "../../components/header/Header.tsx";
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import {useState} from "react";
+import { useState } from "react";
 
 const LandingPage = () => {
-
-
+   
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
     const isMobile = useBreakpointValue({ base: true, md: false });
 
@@ -44,17 +43,17 @@ const LandingPage = () => {
         <Box  display={"flex"}>
                 <Header/>
                 <Box mt={"100px"} width={"100%"} display={"flex"} justifyContent={"space-between"}>
-                    <Box width={"20%"} >
+                    <Box w={"10%"}>
                         <Flex>
                             {/* Sidebar */}
                             <Box
-                                width={isSidebarCollapsed ? '60px' : '250px'}
+                                w={"20%"}
                                 height="100vh"
                                 bg="green.600"
                                 color="white"
                                 p={4}
                                 transition="width 0.3s"
-                                position="fixed"
+                                position="fixed" 
                             >
                                 <IconButton
                                     aria-label="Toggle Sidebar"
@@ -80,16 +79,14 @@ const LandingPage = () => {
 
                         </Flex>
                     </Box>
-                    <Box width={"75%"} margin={"auto"} >
-                        <Box>
-                            <Text fontSize="2xl">Welcome to the Dashboard</Text>
+                    <Box  display={"flex"} flexDir={"column"} w={"80%"}>
+                        <Box display={"flex"} alignItems={"center"} flexDir={"column"} >
+                            <Text  fontSize="2xl">Welcome to the Dashboard</Text>
                             <Text>This is a sidebar example using Chakra UI and React with TypeScript.</Text>
                         </Box>
-                        <Box display={"flex"} justifyContent={"space-between"}>
-                            <Box >
-                                <FootballPitch/>
-                            </Box>
-                            {<Box>
+                             <FootballPitch/>
+                        <Box>
+                        {<Box>
                                 <HighchartsReact highcharts={Highcharts} options={options} />
                             </Box>}
                         </Box>
