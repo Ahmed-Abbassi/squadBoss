@@ -25,7 +25,7 @@ const NoMatch = ()=>{
                     Oops! The page you are looking for does not exist.
                 </Text>
                 <Button onClick={()=>{
-                    navigate("/");
+                    navigate("/home");
                 }}>
                     Go Home
                 </Button>

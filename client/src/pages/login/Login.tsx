@@ -13,8 +13,17 @@ import Foot1 from "../../../public/footlogin.jpg";
 import Squad from "../../../public/squadBoss.png";
 import { FaFacebook, FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
 import { motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "../../components/header/Header.tsx";
+import axios from "axios";
+import { useAuth } from "../../components/authContext/AuthContext.tsx";
+import { useNavigate } from "react-router";
+
+
+
+
+
+
 const inputStyles: InputProps = {
   width: "100%",
   borderColor: "gray.300",
@@ -62,6 +71,28 @@ const Typewriter: React.FC<propsToType> = ({ sentences, textColor }) => {
 };
 
 const Login = () => {
+  const emailRef = useRef<any>(null);
+  const passwordRef = useRef<any>(null);
+
+  const { login,isAuthenticated } = useAuth();
+const navigate = useNavigate();
+
+const handleLoginClicked = async () => {
+  try {
+    const res = await axios.post("http://localhost:3001/coach/login", {
+      email: emailRef.current?.value,
+      pwd: passwordRef.current?.value,
+    });
+
+    login(res.data.token); // Sets token in context and localStorage
+    navigate("/app"); // Redirect to /app after login
+  } catch (err) {
+    console.error("Login failed");
+  }
+};
+
+console.log("after login : ", isAuthenticated);
+
   return (
     <Box>
       <Header/>
@@ -100,11 +131,16 @@ const Login = () => {
 
               <Fieldset.Content>
                 <Field label="Email">
-                  <Input {...inputStyles} type="email" name="email" />
+                  <Input
+                    {...inputStyles}
+                    type="email"
+                    name="email"
+                    ref={emailRef}
+                  />
                 </Field>
 
                 <Field label="Password">
-                  <Input {...inputStyles} name="password" type="password" />
+                  <Input {...inputStyles} name="password" type="password"  ref={passwordRef}/>
                 </Field>
               </Fieldset.Content>
 
@@ -114,6 +150,7 @@ const Login = () => {
                   w={"100%"}
                   type="submit"
                   alignSelf="flex-start"
+                  onClick={handleLoginClicked}
               >
                 Login
               </Button>

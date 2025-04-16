@@ -1,5 +1,9 @@
 const Coach = require("../models/coach");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
+require('dotenv').config();
+const SECRET_KEY = process.env.SECRET_KEY;
 
 // Sign Up Coach
 exports.signupCoach = (req, res) => {
@@ -12,8 +16,41 @@ exports.signupCoach = (req, res) => {
 };
 
 // Login Coach
-exports.loginCoach = (req, res) => {
-    Coach.findOne({ email: req.body.email })
+exports.loginCoach = async (req, res) => {
+    const { email, pwd } = req.body;
+  
+    if (!email || !pwd) {
+      return res.status(200).json({ "error": 'Email and password are required' });
+    }
+  
+    const coach = await Coach.findOne({ email });
+    if (!coach) {
+      console.log("coach not found:", email);
+      return res.status(404).json({ error: 'Invalid credentials' });
+    }
+
+    const passwordMatch = await bcrypt.compare(pwd, coach.pwd);
+        if (!passwordMatch) {
+            return res.status(200).json({ "error": 'Invalid credentials' });
+        }
+
+        else{
+            const token = jwt.sign(
+                { coachId: coach._id }, 
+                SECRET_KEY,
+                { expiresIn: '1h' }
+            );
+            res.status(200).json({ 
+                token,
+                coachId: coach._id,
+                email: coach.email
+            });
+        }
+
+  };
+  
+  
+    /*Coach.findOne({ email: req.body.email })
         .then(coach => {
             if (!coach) return res.json({ message: "0" }); // Invalid email
             return bcrypt.compare(req.body.pwd, coach.pwd).then(isValid => {
@@ -24,6 +61,53 @@ exports.loginCoach = (req, res) => {
         })
         .catch(err => res.status(500).json({ error: "Internal server error", details: err }));
 };
+*/
+
+//coach :
+/*
+exports.loginCoach = async (req, res) => {
+    try {
+        const { email, pwd } = req.body;
+        
+        if (!email || !pwd) {
+            return res.status(400).json({ error: 'Email and password are required' });
+        }
+
+        const coach = await coach.findOne({ email });
+        if (!coach) {
+            console.log("coach not found:", email);
+            
+            return res.status(401).json({ error: 'Invalid credentials' });
+        }
+
+        const passwordMatch = await bcrypt.compare(pwd, coach.pwd);
+        if (!passwordMatch) {
+            return res.status(401).json({ error: 'Invalid credentials' });
+        }
+
+        const token = jwt.sign(
+            { coachId: coach._id }, 
+            process.env.SECRET_KEY || 'development-secret',
+            { expiresIn: '1h' }
+        );
+
+        res.status(200).json({ 
+            token,
+            coachId: coach._id,
+            email: coach.email
+        });
+        
+    } catch (error) {
+        console.error("Login error:", error);
+        res.status(500).json({ 
+            error: 'Login failed',
+            details: process.env.NODE_ENV === 'development' ? error.message : undefined
+        });
+    }
+};
+  
+ */
+
 
 // Get all Coaches
 exports.getAllCoaches = (req, res) => {

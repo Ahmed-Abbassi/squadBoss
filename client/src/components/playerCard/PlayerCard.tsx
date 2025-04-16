@@ -2,7 +2,7 @@
 import undefined from "../../../public/undefined.webp"
     function PlayerCard({ player, key }: any) {
     return (
-        <Box
+        <Box 
         transform={"rotate(-90deg)"}
         key={key}
         position="absolute"
@@ -26,6 +26,11 @@ import undefined from "../../../public/undefined.webp"
         padding="10px"
         justifyContent="space-between"
         >
+            <Box position={"relative"}>
+                <Box pos={"absolute"} top={"-10px"} left={"45px"}  width={"25px"} bgColor={"red.400"} borderRadius={"50%"}>
+                <Text textAlign={"center"} >{player.Overall || 99}</Text>
+                </Box>
+            </Box>
         {/* Player Image */}
         <Image
             src={undefined}

@@ -4,7 +4,11 @@ const axios = require('axios');
 exports.sendPlayerDataToIA = async (playerData) => {
     try {
         const response = await axios.post('http://127.0.0.1:5000/predict', playerData);
+       setTimeout(() => {
+            console.log("AI response:", response);
+        }, 5000); // Log AI response after 1 second delay
         return response.data.prediction;
+        
     } catch (error) {
         console.error('Error sending data to AI:', error);
         throw new Error('Error connecting with AI');

@@ -8,6 +8,7 @@ import ContactUs from './pages/contactus/ContactUs';
 import AboutUs from './pages/aboutus/AboutUs';
 import Pricing from './pages/pricing/Pricing';
 import NoMatch from "./pages/page404/NoMatch.tsx";
+import ProtectedLayout from './components/protectedLayout/ProtectedLayout.tsx';
 function App() {
   return (
     <Provider>
@@ -15,7 +16,7 @@ function App() {
         {
           //public routes
         }
-        <Route index path='/' element={<Home />} />
+        <Route index path='/home' element={<Home />} />
         <Route  path='/login' element={<Login />} />
         <Route  path='/signup' element={<Signup/>} />
         <Route  path='/contact' element={<ContactUs />} />
@@ -27,7 +28,12 @@ function App() {
         {
         //protected routes
         }
+
+        <Route element={<ProtectedLayout />}>
+            
         <Route index path='/app' element={<LandingPage />} />
+        
+          </Route>
       </Routes>    
     </Provider>
   );
