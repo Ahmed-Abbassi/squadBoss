@@ -170,7 +170,7 @@ const footballTeam4321 = {
       position: "Left Back",
       shirtNumber: 3,
       x: "12.5%",
-      y: "60%",
+      y: "67%",
       imageUrl: basePath+ "cucurella.png",
       Overall: 99
     },
@@ -203,7 +203,7 @@ const footballTeam4321 = {
       position: "Right Back",
       shirtNumber: 2,
       x: "77.5%",
-      y: "60%",
+      y: "67%",
       imageUrl: basePath+ "walker.png",
       Overall: 99
     },
@@ -504,7 +504,12 @@ players[10].Overall = bestAttackers[2].Overall;
   {players.map((player, index) => {
     console.log("player : ", player)
     return (
-    <PlayerCard player={player} key={index}/>
+    <PlayerCard player={player} key={index} styler={{
+      position: "absolute",
+      left: player.x,
+      top: player.y,
+      transition: "all 0.5s ease-in-out",
+    }}/>
   )})}
       </Box>
     </Box>

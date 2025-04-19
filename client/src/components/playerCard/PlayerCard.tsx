@@ -1,8 +1,8 @@
     import { Box, Image, Text } from "@chakra-ui/react";
 import undefined from "../../../public/undefined.webp"
-    function PlayerCard({ player, key }: any) {
+    function PlayerCard({ player, key, styler }: any) {
     return (
-        <Box 
+        <Box style={styler}
         transform={"rotate(-90deg)"}
         key={key}
         position="absolute"
