@@ -30,6 +30,8 @@ exports.loginCoach = async (req, res) => {
     }
 
     const passwordMatch = await bcrypt.compare(pwd, coach.pwd);
+    console.log("passwordMatch:", passwordMatch);
+    
         if (!passwordMatch) {
             return res.status(200).json({ "error": 'Invalid credentials' });
         }

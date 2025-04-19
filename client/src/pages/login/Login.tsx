@@ -84,8 +84,10 @@ const handleLoginClicked = async () => {
       pwd: passwordRef.current?.value,
     });
 
-    login(res.data.token); // Sets token in context and localStorage
-    navigate("/app"); // Redirect to /app after login
+    if(res.data.token != undefined){
+      login(res.data.token);
+      navigate("/app"); // Redirect to /app after login
+    } // Sets token in context and localStorage
   } catch (err) {
     console.error("Login failed");
   }
